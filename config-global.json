@@ -3,6 +3,14 @@
     {
       "original": "${HOME}/.test",
       "repo": "./files/home/markormesher/.test"
+    },
+    {
+      "original": "${HOME}/.tmux.conf",
+      "repo": "./files/home/markormesher/.tmux.conf"
+    },
+    {
+      "original": "${HOME}/.tmux/status-right.sh",
+      "repo": "./files/home/markormesher/.tmux/status-right.sh"
     }
   ]
 }
