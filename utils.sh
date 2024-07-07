@@ -9,6 +9,10 @@ YELLOW=$(tput setaf 3)
 RED=$(tput setaf 1)
 ENDCOLOUR=$(tput sgr0)
 
+function okay() {
+  echo "${GREEN}OKAY:${ENDCOLOUR} $1"
+}
+
 function info() {
   echo "${BLUE}INFO:${ENDCOLOUR} $1"
 }
