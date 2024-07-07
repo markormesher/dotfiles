@@ -4,10 +4,6 @@ set -euo pipefail
 repo_dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 source "${repo_dir}/utils.sh"
 
-# copy to new path
-# add to config
-# replace with symlink to here
-
 if [ "$#" -ne 1 ]; then
   echo "Usage: ./track-file.sh FILE"
   exit 1
@@ -23,8 +19,10 @@ fi
 # decide where to put the file in this repo
 
 orig_file_path=$(realpath -s "${file}")
-repo_file_path_full="$(pwd)/files${orig_file_path}"
-repo_file_path_relative="./files${orig_file_path}"
+orig_file_path_to_store=$(sed "s#^${HOME}#%HOME%#" <<<"${orig_file_path}")
+
+repo_file_path_full="$(pwd)/files/${orig_file_path_to_store}"
+repo_file_path_relative="./files/${orig_file_path_to_store}"
 
 info "Tracking '${orig_file_path}' at '${repo_file_path_full}'."
 
@@ -48,5 +46,4 @@ ln -s "${repo_file_path_full}" "${orig_file_path}"
 
 # add to config
 
-orig_file_path=$(sed "s#^${HOME}#\${HOME}#" <<<"${orig_file_path}")
-patch_config global '.files += [{"original": "'"${orig_file_path}"'", "repo": "'"${repo_file_path_relative}"'"}]'
+patch_config global '.files += [{"original": "'"${orig_file_path_to_store}"'", "repo": "'"${repo_file_path_relative}"'"}]'

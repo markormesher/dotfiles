@@ -8,7 +8,7 @@ jq -rc '.files | .[]' config-global.json | while read entry; do
   repo_path=$(jq -rc '.repo' <<<"${entry}")
 
   orig_path=$(jq -rc '.original' <<<"${entry}")
-  orig_path=$(sed "s#\${HOME}#${HOME}#" <<<"${orig_path}")
+  orig_path=$(sed "s#%HOME%#${HOME}#" <<<"${orig_path}")
 
   repo_path_real=$(realpath "${repo_path}")
   if [[ -f "${orig_path}" ]]; then

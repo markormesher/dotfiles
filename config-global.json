@@ -1,16 +1,20 @@
 {
   "files": [
     {
-      "original": "${HOME}/.test",
-      "repo": "./files/home/markormesher/.test"
+      "original": "%HOME%/.test",
+      "repo": "./files/%HOME%/.test"
     },
     {
-      "original": "${HOME}/.tmux.conf",
-      "repo": "./files/home/markormesher/.tmux.conf"
+      "original": "%HOME%/.tmux.conf",
+      "repo": "./files/%HOME%/.tmux.conf"
     },
     {
-      "original": "${HOME}/.tmux/status-right.sh",
-      "repo": "./files/home/markormesher/.tmux/status-right.sh"
+      "original": "%HOME%/.tmux/status-right.sh",
+      "repo": "./files/%HOME%/.tmux/status-right.sh"
+    },
+    {
+      "original": "%HOME%/.selected_editor",
+      "repo": "./files/%HOME%/.selected_editor"
     }
   ]
 }
