@@ -19,7 +19,7 @@ jq -rc '.files | .[]' config-global.json | while read entry; do
     info "'${orig_path}' is already linked to the dotfiles repo - nothing to do."
   else
     info "Replacing '${orig_path}' with a symlink to the dotfiles repo."
-    rm "${orig_path}"
+    rm -f "${orig_path}"
     ln -s "${repo_path_real}" "${orig_path}"
   fi
 done
