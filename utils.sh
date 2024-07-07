@@ -22,6 +22,14 @@ function error() {
   exit 1
 }
 
+# util checks
+
+echo jq | while read c; do
+  if ! command -v $c >/dev/null 2>&1; then
+    error "This utility depends on the '$c' command, which is not present."
+  fi
+done
+
 # config helpers
 
 function patch_config() {
