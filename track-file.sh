@@ -26,7 +26,7 @@ repo_file_path_relative="./files/${orig_file_path_to_store}"
 
 info "Tracking '${orig_file_path}' at '${repo_file_path_full}'."
 
-if [[ "$(jq '.files | map(select(.original == "'"${orig_file_path}"'")) | length' config-global.json)" != "0" ]]; then
+if [[ "$(jq -rc '.files | map(select(.original == "'"${orig_file_path_to_store}"'")) | length' config-global.json)" != "0" ]]; then
   error "The original file '${orig_file_path}' is already tracked in this repo."
 fi
 

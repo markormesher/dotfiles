@@ -1,20 +1,16 @@
 {
   "files": [
     {
-      "original": "%HOME%/.test",
-      "repo": "./files/%HOME%/.test"
-    },
-    {
-      "original": "%HOME%/.tmux.conf",
-      "repo": "./files/%HOME%/.tmux.conf"
-    },
-    {
       "original": "%HOME%/.tmux/status-right.sh",
       "repo": "./files/%HOME%/.tmux/status-right.sh"
     },
     {
       "original": "%HOME%/.selected_editor",
       "repo": "./files/%HOME%/.selected_editor"
+    },
+    {
+      "original": "%HOME%/.tmux.conf",
+      "repo": "./files/%HOME%/.tmux.conf"
     }
   ]
 }
