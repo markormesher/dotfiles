@@ -47,3 +47,4 @@ ln -s "${repo_file_path_full}" "${orig_file_path}"
 # add to config
 
 patch_config global '.files += [{"original": "'"${orig_file_path_to_store}"'", "repo": "'"${repo_file_path_relative}"'"}]'
+patch_config global '.files = (.files | sort_by(.original))'

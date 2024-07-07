@@ -11,6 +11,10 @@
     {
       "original": "%HOME%/.tmux.conf",
       "repo": "./files/%HOME%/.tmux.conf"
+    },
+    {
+      "original": "%HOME%/.gitignore",
+      "repo": "./files/%HOME%/.gitignore"
     }
   ]
 }
