@@ -1,0 +1,8 @@
+{
+  "files": [
+    {
+      "original": "${HOME}/.test",
+      "repo": "./files/home/markormesher/.test"
+    }
+  ]
+}
