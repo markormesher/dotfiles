@@ -3,11 +3,19 @@ set -euo pipefail
 
 ### utils ###
 
-GREEN=$(tput setaf 2)
-BLUE=$(tput setaf 6)
-YELLOW=$(tput setaf 3)
-RED=$(tput setaf 1)
-ENDCOLOUR=$(tput sgr0)
+if [[ "${TERM}" != "" ]] && [[ "${TERM}" != "unknown" ]]; then
+  GREEN=$(tput setaf 2)
+  BLUE=$(tput setaf 6)
+  YELLOW=$(tput setaf 3)
+  RED=$(tput setaf 1)
+  ENDCOLOUR=$(tput sgr0)
+else
+  GREEN=""
+  BLUE=""
+  YELLOW=""
+  RED=""
+  ENDCOLOUR=""
+fi
 
 function okay() {
   echo "${GREEN}OKAY:${ENDCOLOUR} $1"
