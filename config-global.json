@@ -1,8 +1,44 @@
 {
   "files": [
     {
-      "original": "%HOME%/.tmux/status-right.sh",
-      "repo": "./files/%HOME%/.tmux/status-right.sh"
+      "original": "%HOME%/.bash_profile",
+      "repo": "./files/%HOME%/.bash_profile"
+    },
+    {
+      "original": "%HOME%/.bashrc",
+      "repo": "./files/%HOME%/.bashrc"
+    },
+    {
+      "original": "%HOME%/.config/nvim/init.lua",
+      "repo": "./files/%HOME%/.config/nvim/init.lua"
+    },
+    {
+      "original": "%HOME%/.config/nvim/lua/mormesher/globals.lua",
+      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/globals.lua"
+    },
+    {
+      "original": "%HOME%/.config/nvim/lua/mormesher/key-shortcuts.lua",
+      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/key-shortcuts.lua"
+    },
+    {
+      "original": "%HOME%/.config/nvim/lua/mormesher/lsp.lua",
+      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/lsp.lua"
+    },
+    {
+      "original": "%HOME%/.config/nvim/lua/mormesher/options.lua",
+      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/options.lua"
+    },
+    {
+      "original": "%HOME%/.config/nvim/lua/mormesher/plugins.lua",
+      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/plugins.lua"
+    },
+    {
+      "original": "%HOME%/.gitconfig",
+      "repo": "./files/%HOME%/.gitconfig"
+    },
+    {
+      "original": "%HOME%/.gitignore",
+      "repo": "./files/%HOME%/.gitignore"
     },
     {
       "original": "%HOME%/.selected_editor",
@@ -13,8 +49,8 @@
       "repo": "./files/%HOME%/.tmux.conf"
     },
     {
-      "original": "%HOME%/.gitignore",
-      "repo": "./files/%HOME%/.gitignore"
+      "original": "%HOME%/.tmux/status-right.sh",
+      "repo": "./files/%HOME%/.tmux/status-right.sh"
     }
   ]
 }

@@ -1,0 +1,25 @@
+[user]
+  name = Mark Ormesher
+[core]
+  autocrlf = input
+  safecrlf = false
+[pull]
+  rebase = false
+[push]
+  default = current
+[filter "lfs"]
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+[include]
+  path = .gitconfig.local
+[init]
+  defaultBranch = main
+[fetch]
+  prune = true
+[commit]
+  gpgsign = true
+[tag]
+  gpgsign = true
+  forceSignAnnotated = true
