@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Why does this exist?
+# - Neovim needs to be started different depending on where it's installed.
+# - This used to be done by aliasing (n)vim to a function that picked the start command, but that breaks programs that use the $EDITOR envvar.
+# - Instead, those aliases and the $EDITOR envvar now point to this tiny executable.
+
+function running_on_mac {
+  [[ "$(uname -s)" == "Darwin" ]]
+}
+
+real_nvim=$(type -a nvim | (grep -v 'alias' || :) | head -n 1 | rev | cut -d ' ' -f 1 | rev)
+if [[ -z "${real_nvim}" ]]; then
+  echo "Error: Neovim doesn't seem to be installed! 'type -a nvim' return the following:"
+  type -a nvim
+  exit 1
+fi
+
+if running_on_mac || [ -e /dev/fuse ]; then
+  $real_nvim "$@"
+else
+  $real_nvim --appimage-extract-and-run "$@"
+fi

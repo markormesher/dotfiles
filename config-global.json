@@ -41,6 +41,10 @@
       "repo": "./files/%HOME%/.gitignore"
     },
     {
+      "original": "%HOME%/.profile",
+      "repo": "./files/%HOME%/.profile"
+    },
+    {
       "original": "%HOME%/.selected_editor",
       "repo": "./files/%HOME%/.selected_editor"
     },
@@ -51,6 +55,10 @@
     {
       "original": "%HOME%/.tmux/status-right.sh",
       "repo": "./files/%HOME%/.tmux/status-right.sh"
+    },
+    {
+      "original": "%HOME%/bin/start_vim",
+      "repo": "./files/%HOME%/bin/start_vim"
     }
   ]
 }
