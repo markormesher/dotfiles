@@ -1,0 +1,59 @@
+@import url("colours.css");
+
+/* global appearance */
+
+* {
+  font-family: "Hack Nerd Font Mono";
+  font-size: 14px;
+}
+
+window#waybar {
+  background-color: @background-darker;
+  color: @comment;
+}
+
+button {
+  box-shadow: inset 0 -3px transparent;
+  border-radius: 0;
+}
+
+button:hover {
+  box-shadow: inherit;
+}
+
+/* widget spacing */
+
+#workspaces, #mode, #window, #network, #pulseaudio, #backlight, #battery, #clock {
+  padding: 0 8px;
+}
+
+#workspaces {
+  padding-left: 0;
+}
+
+#custom-separator {
+  color: @purple;
+  margin: 0 12px;
+}
+
+/* specific components */
+
+#workspaces button {
+  color: @comment;
+}
+
+#workspaces button.focused {
+  color: @purple;
+}
+
+#mode {
+  color: @pink;
+}
+
+#window {
+  color: @foreground;
+}
+
+#clock {
+  color: @foreground;
+}

@@ -1,0 +1,60 @@
+{
+  "position": "top",
+  "spacing": 4,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode",
+    "sway/window"
+  ],
+  "modules-right": [
+    "network",
+    "custom/separator",
+    "bluetooth",
+    "custom/separator",
+    "pulseaudio",
+    "custom/separator",
+    "backlight",
+    "custom/separator",
+    "battery",
+    "custom/separator",
+    "clock"
+  ],
+
+  "sway/workspaces": {},
+  "sway/mode": {
+    "format": "󱐋 {}"
+  },
+  "swap/window": {
+    "max-length": 50
+  },
+
+  "custom/separator": {
+    "format": "/"
+  },
+
+  "network": {
+    "interface": "wl*",
+    "format": "󰖩 {ifname}...",
+    "format-wifi": "󰖩 {essid}",
+    "format-disconnected": "󰖪 disconnected"
+  },
+  "pulseaudio": {
+    "format": "󰕾 {volume}%",
+    "format-muted": "󰸈 {volume}% (muted)",
+    "ignored-sinks": ["PulseEffects(apps)"]
+  },
+  "backlight": {
+    "format": "󰌵 {percent}%"
+  },
+  "battery": {
+    "format-charging": "󰚥 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-discharging": "{icon} {capacity}% ({time})",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-time": "{H}:{m}"
+  },
+  "clock": {
+    "format": "{:%Y-%m-%d %H:%M:%S}",
+    "interval": 1
+  }
+}

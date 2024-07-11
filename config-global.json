@@ -9,6 +9,14 @@
       "repo": "./files/%HOME%/.bashrc"
     },
     {
+      "original": "%HOME%/.config/kitty/kitty.conf",
+      "repo": "./files/%HOME%/.config/kitty/kitty.conf"
+    },
+    {
+      "original": "%HOME%/.config/mako/config.ini",
+      "repo": "./files/%HOME%/.config/mako/config.ini"
+    },
+    {
       "original": "%HOME%/.config/nvim/init.lua",
       "repo": "./files/%HOME%/.config/nvim/init.lua"
     },
@@ -31,6 +39,34 @@
     {
       "original": "%HOME%/.config/nvim/lua/mormesher/plugins.lua",
       "repo": "./files/%HOME%/.config/nvim/lua/mormesher/plugins.lua"
+    },
+    {
+      "original": "%HOME%/.config/sway/config",
+      "repo": "./files/%HOME%/.config/sway/config"
+    },
+    {
+      "original": "%HOME%/.config/sway/screenshot.sh",
+      "repo": "./files/%HOME%/.config/sway/screenshot.sh"
+    },
+    {
+      "original": "%HOME%/.config/swaylock/config",
+      "repo": "./files/%HOME%/.config/swaylock/config"
+    },
+    {
+      "original": "%HOME%/.config/waybar/colours.css",
+      "repo": "./files/%HOME%/.config/waybar/colours.css"
+    },
+    {
+      "original": "%HOME%/.config/waybar/config",
+      "repo": "./files/%HOME%/.config/waybar/config"
+    },
+    {
+      "original": "%HOME%/.config/waybar/launch.sh",
+      "repo": "./files/%HOME%/.config/waybar/launch.sh"
+    },
+    {
+      "original": "%HOME%/.config/waybar/style.css",
+      "repo": "./files/%HOME%/.config/waybar/style.css"
     },
     {
       "original": "%HOME%/.gitconfig",
