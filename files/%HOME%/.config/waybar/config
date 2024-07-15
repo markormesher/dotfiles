@@ -32,6 +32,9 @@
     "format": "/"
   },
 
+  "bluetooth": {
+    "on-click": "blueman-manager",
+  },
   "network": {
     "interface": "wl*",
     "format": "󰖩 {ifname}...",
