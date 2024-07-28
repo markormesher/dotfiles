@@ -187,6 +187,10 @@ if command -v apt &> /dev/null; then
   alias apt='sudo apt'
 fi
 
+if command -v pacman &> /dev/null; then
+  alias pacman='sudo pacman'
+fi
+
 # use the GNU versions of tools where possible (requires some brew packages)
 if running_on_mac; then
   if check_brew && ! (cat "${HOME}/.last-brew-list" | grep coreutils > /dev/null); then
