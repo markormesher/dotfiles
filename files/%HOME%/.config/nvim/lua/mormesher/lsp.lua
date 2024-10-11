@@ -64,10 +64,22 @@ vim.diagnostic.config({
 
 local mason_ok, mason = check_plugin("mason")
 local mason_lspconfig_ok, mason_lspconfig = check_plugin("mason-lspconfig")
-if (mason_ok and mason_lspconfig_ok) then
+local mason_tools_ok, mason_tools = check_plugin("mason-tool-installer")
+if (mason_ok and mason_lspconfig_ok and mason_tools_ok) then
   mason.setup()
+
   mason_lspconfig.setup({
     automatic_install = true,
+  })
+
+  mason_tools.setup({
+    ensure_installed = {
+      "eslint-lsp",
+      "gopls",
+      "typescript-language-server"
+    },
+    auto_update = true,
+    run_on_start = true,
   })
 end
 
@@ -98,7 +110,7 @@ if (lsp_ok and cmp_nvim_lsp) then
   })
 
   -- typescript
-  lsp.tsserver.setup({
+  lsp.ts_ls.setup({
     capabilities = cmp_capabilities,
     init_options = {
       preferences = {
@@ -135,19 +147,6 @@ if (lsp_ok and cmp_nvim_lsp) then
               end
             end
           end
-          vim.lsp.buf.format({async = false})
-        end
-      })
-    end,
-  })
-
-  -- jsonnet
-  lsp.jsonnet_ls.setup({
-    capabilities = cmp_capabilities,
-    single_file_support = true,
-    on_attach = function(client)
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        callback = function()
           vim.lsp.buf.format({async = false})
         end
       })
