@@ -76,7 +76,6 @@ DEFAULT_BREW_PACKAGES=(
   "ripgrep"
   "tmux"
   "wget"
-  "yadm"
 )
 
 function running_on_mac {
@@ -238,23 +237,29 @@ else
   alias diff='diff -y --color -W $(( $(tput cols) - 2 ))'
 fi
 
-# docker
-
-alias dk='docker'
-alias dkps="docker ps --format '{{.ID}} ~ {{.Names}} ~ {{.Status}} ~ {{.Image}}'"
+# docker/podman
 
 if command -v docker-compose &> /dev/null; then
   alias dc='docker-compose'
 else
-  alias dc='echo "docker-compose is not on the path yet"'
+  alias dc='echo "docker-compose" is not on the path yet"'
+fi
+
+if command -v podman-compose &> /dev/null; then
+  alias pc='podman-compose'
+else
+  alias pc='echo "podman-compose" is not on the path yet"'
 fi
 
 # git
 
-alias add='git add'
-alias commit='git commit'
 alias pull='git pull'
 alias push='git push'
+if command -v semver-tagger &> /dev/null; then
+  alias st='semver-tagger'
+else
+  alias pc='echo "semver-tagger" is not on the path yet"'
+fi
 
 # gpg
 
@@ -277,14 +282,6 @@ function gw {
 }
 
 # TODO: gradle opts
-
-# k3s
-
-if command -v k3s &> /dev/null; then
-  alias kubectl="k3s kubectl"
-  source <(k3s completion bash)
-  source <(k3s kubectl completion bash)
-fi
 
 # node
 
