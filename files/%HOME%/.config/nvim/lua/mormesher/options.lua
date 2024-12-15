@@ -25,7 +25,7 @@ if (notify_ok) then
 end
 
 -- no mouse
-opt.mouse = nil
+opt.mouse = ""
 
 -- keep undo history even after exiting
 opt.undofile = true
