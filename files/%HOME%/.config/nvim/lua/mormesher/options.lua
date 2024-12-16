@@ -27,6 +27,9 @@ end
 -- no mouse
 opt.mouse = ""
 
+-- allow backspacing over everything
+opt.backspace = "indent,eol,start"
+
 -- keep undo history even after exiting
 opt.undofile = true
 
