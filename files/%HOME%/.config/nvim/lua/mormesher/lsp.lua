@@ -75,8 +75,9 @@ if (mason_ok and mason_lspconfig_ok and mason_tools_ok) then
   mason_tools.setup({
     ensure_installed = {
       "eslint-lsp",
-      "gopls",
-      "typescript-language-server"
+      "typescript-language-server",
+      "cssls",
+      "gopls"
     },
     auto_update = true,
     run_on_start = true,
@@ -127,6 +128,16 @@ if (lsp_ok and cmp_nvim_lsp) then
       "typescript.tsx"
     },
     cmd = { "typescript-language-server", "--stdio" }
+  })
+
+  -- css
+  lsp.cssls.setup({
+    capabilities = cmp_capabilities,
+    init_options = {},
+    filetypes = {
+      "css",
+      "scss"
+    }
   })
 
   -- go
