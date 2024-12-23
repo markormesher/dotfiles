@@ -23,3 +23,5 @@
 [tag]
   gpgsign = true
   forceSignAnnotated = true
+[help]
+  autocorrect = 20
