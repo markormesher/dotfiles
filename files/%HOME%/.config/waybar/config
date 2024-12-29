@@ -7,16 +7,12 @@
     "sway/window"
   ],
   "modules-right": [
+    "custom/needs-reboot",
     "network",
-    "custom/separator",
     "bluetooth",
-    "custom/separator",
-    "pulseaudio",
-    "custom/separator",
+    "wireplumber",
     "backlight",
-    "custom/separator",
     "battery",
-    "custom/separator",
     "clock"
   ],
 
@@ -28,8 +24,11 @@
     "max-length": 50
   },
 
-  "custom/separator": {
-    "format": "/"
+  "custom/needs-reboot": {
+    "exec": "~/.config/waybar/needs-reboot.sh",
+    "interval": 600,
+    "return-type": "json",
+    "hide-empty-text": true
   },
 
   "bluetooth": {
@@ -41,10 +40,10 @@
     "format-wifi": "󰖩 {essid}",
     "format-disconnected": "󰖪 disconnected"
   },
-  "pulseaudio": {
+  "wireplumber": {
     "format": "󰕾 {volume}%",
     "format-muted": "󰸈 {volume}% (muted)",
-    "ignored-sinks": ["PulseEffects(apps)"]
+    "on-click": "helvum"
   },
   "backlight": {
     "format": "󰌵 {percent}%"

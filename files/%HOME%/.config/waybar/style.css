@@ -12,38 +12,45 @@ window#waybar {
   color: @comment;
 }
 
-button {
-  box-shadow: inset 0 -3px transparent;
-  border-radius: 0;
-}
-
-button:hover {
-  box-shadow: inherit;
-}
-
 /* widget spacing */
 
-#workspaces, #mode, #window, #network, #pulseaudio, #backlight, #battery, #clock {
-  padding: 0 8px;
+.modules-left > * > .module {
+  padding: 0 18px;
+  border-left: 1px solid @selection;
 }
 
-#workspaces {
-  padding-left: 0;
+.modules-left > *:first-child > .module {
+  border-left: none;
 }
 
-#custom-separator {
-  color: @purple;
-  margin: 0 12px;
+.modules-right > * > .module {
+  padding: 0 18px;
+  border-right: 1px solid @selection;
+}
+
+.modules-right > *:last-child > .module {
+  border-right: none;
 }
 
 /* specific components */
 
 #workspaces button {
   color: @comment;
+  padding: 0;
+  padding-right: 6px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  transition: none;
 }
 
-#workspaces button.focused {
+#workspaces button:last-child {
+  padding-right: 0;
+}
+
+#workspaces button.focused, #workspaces button:hover {
   color: @purple;
+  font-weight: bold;
 }
 
 #mode {
@@ -56,4 +63,8 @@ button:hover {
 
 #clock {
   color: @foreground;
+}
+
+#custom-needs-reboot.yes {
+  color: @red;
 }

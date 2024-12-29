@@ -69,6 +69,10 @@
       "repo": "./files/%HOME%/.config/waybar/launch.sh"
     },
     {
+      "original": "%HOME%/.config/waybar/needs-reboot.sh",
+      "repo": "./files/%HOME%/.config/waybar/needs-reboot.sh"
+    },
+    {
       "original": "%HOME%/.config/waybar/style.css",
       "repo": "./files/%HOME%/.config/waybar/style.css"
     },
