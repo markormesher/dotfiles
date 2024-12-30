@@ -10,21 +10,20 @@ function real_cmd() {
   fi
 }
 
-jq=$(real_cmd jq)
 pacman=$(real_cmd pacman)
 systemctl=$(real_cmd systemctl)
 uname=$(real_cmd uname)
 
 needs_reboot=0
 
-installed_linux=$($pacman -Q linux | cut -d " " -f 2)
-running_linux=$($uname -r)
+installed_linux=$($pacman -Q linux | cut -d " " -f 2 | sed 's/[\.\-]/_/g')
+running_linux=$($uname -r | sed 's/[\.\-]/_/g')
 if [[ "${running_linux}" != "${installed_linux}" ]]; then
   needs_reboot=1
 fi
 
-installed_systemd=$($pacman -Q systemd | cut -d " " -f 2)
-running_systemd=$($systemctl --version)
+installed_systemd=$($pacman -Q systemd | cut -d " " -f 2 | sed 's/[\.\-]/_/g')
+running_systemd=$($systemctl --version | sed 's/[\.\-]/_/g')
 if [[ "${running_systemd}" != *"${installed_systemd}"* ]]; then
   needs_reboot=1
 fi
