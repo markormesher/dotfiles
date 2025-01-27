@@ -276,8 +276,10 @@ export JAVA_HOME
 function gw {
   if [ -f ./gradlew ]; then
     ./gradlew "$@"
+  elif [ -f ./godelw ]; then
+    ./godelw "$@"
   else
-    echo "No ./gradlew here"
+    echo "No ./gradlew or ./godelw here"
   fi
 }
 

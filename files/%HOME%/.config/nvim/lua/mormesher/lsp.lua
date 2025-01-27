@@ -22,6 +22,8 @@ if (lsp_saga_ok) then
   -- floating terminal
   keymap.set("n", "<c-space>", "<cmd>Lspsaga term_toggle<cr>")
   keymap.set("t", "<c-space>", "<cmd>Lspsaga term_toggle<cr>")
+  keymap.set("n", "<c-s>", "<cmd>Lspsaga term_toggle<cr>")
+  keymap.set("t", "<c-s>", "<cmd>Lspsaga term_toggle<cr>")
 
   -- show documentation snippet
   keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>")
