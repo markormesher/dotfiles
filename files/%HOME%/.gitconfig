@@ -24,4 +24,4 @@
   gpgsign = true
   forceSignAnnotated = true
 [help]
-  autocorrect = 20
+  autocorrect = 5
