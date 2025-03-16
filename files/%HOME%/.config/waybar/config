@@ -32,7 +32,7 @@
   },
 
   "bluetooth": {
-    "on-click": "~/.config/waybar/bt-toggle.sh",
+    "on-click": "blueman-manager",
   },
   "network": {
     "interface": "wl*",
