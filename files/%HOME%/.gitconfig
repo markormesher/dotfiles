@@ -1,27 +1,41 @@
 [user]
   name = Mark Ormesher
+[help]
+  autocorrect = 5
+[column]
+  ui = auto
 [core]
   autocrlf = input
   safecrlf = false
+[init]
+  defaultBranch = main
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
 [pull]
   rebase = false
-[push]
-  default = current
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
 [filter "lfs"]
   required = true
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
-[include]
-  path = .gitconfig.local
-[init]
-  defaultBranch = main
-[fetch]
-  prune = true
 [commit]
   gpgsign = true
 [tag]
+  sort = version:refname
   gpgsign = true
   forceSignAnnotated = true
-[help]
-  autocorrect = 5
+[branch]
+  sort = -committerdate
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+[include]
+  path = .gitconfig.local
