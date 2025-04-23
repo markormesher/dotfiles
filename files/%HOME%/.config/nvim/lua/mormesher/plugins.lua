@@ -188,8 +188,12 @@ require("packer").startup(function(use)
       }
     },
     config = function()
+      require("fzf-lua").setup({
+        "hide",
+      })
+
       keymap.set("n", "<leader>,", "<cmd>:FzfLua files<cr>")
-      keymap.set("n", "<leader>.", "<cmd>:FzfLua live_grep<cr>")
+      keymap.set("n", "<leader>.", "<cmd>:FzfLua live_grep resume=true<cr>")
     end
   })
 

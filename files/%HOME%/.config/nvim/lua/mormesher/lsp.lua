@@ -76,10 +76,16 @@ if (mason_ok and mason_lspconfig_ok and mason_tools_ok) then
 
   mason_tools.setup({
     ensure_installed = {
+      -- JS/TS
+      "biome",
       "eslint-lsp",
       "typescript-language-server",
+
+      -- CSS
       "cssls",
-      "gopls"
+
+      -- Go
+      "gopls",
     },
     auto_update = true,
     run_on_start = true,
@@ -90,6 +96,25 @@ local lsp_ok, lsp = check_plugin("lspconfig")
 local cmp_nvim_lsp_ok, cmp_nvim_lsp = check_plugin("cmp_nvim_lsp")
 if (lsp_ok and cmp_nvim_lsp) then
   local cmp_capabilities = cmp_nvim_lsp.default_capabilities()
+
+  -- biome
+  lsp.biome.setup({
+    capabilities = cmp_capabilities,
+    on_attach = function()
+      -- TOOD: fix on save
+    end,
+    filetypes = {
+      "css",
+      "scss",
+      "json",
+      "javascript",
+      "javascriptreact",
+      "javascript.tsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx"
+    }
+  })
 
   -- eslint
   lsp.eslint.setup({
@@ -182,6 +207,7 @@ if (cmp_ok and luasnip_ok) then
       end
     },
     mapping = {
+      ['<C-e>'] = cmp.mapping.abort(),
       ["<cr>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.confirm({ select = true })
