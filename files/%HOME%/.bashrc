@@ -258,7 +258,7 @@ alias push='git push'
 if command -v semver-tagger &> /dev/null; then
   alias st='semver-tagger'
 else
-  alias pc='echo "semver-tagger" is not on the path yet"'
+  alias st='echo "semver-tagger" is not on the path yet"'
 fi
 
 # gpg
