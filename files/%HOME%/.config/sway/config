@@ -3,8 +3,8 @@
 output eDP-1 scale 1.25
 
 input * {
-  xkb_layout "gb"
-  xkb_options "caps:ctrl_modifier,compose:ralt,mod_led:compose"
+  xkb_layout "gb,ro"
+  xkb_options "caps:ctrl_modifier,xkb_options,grp:lalt_lshift_toggle"
 }
 
 input type:touchpad {

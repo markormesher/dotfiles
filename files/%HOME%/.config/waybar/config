@@ -13,6 +13,7 @@
     "wireplumber",
     "backlight",
     "battery",
+    "sway/language",
     "clock"
   ],
 
@@ -54,6 +55,10 @@
     "format-discharging": "{icon} {capacity}% ({time})",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-time": "{H}:{m}"
+  },
+  "sway/language": {
+    "format": "{short}",
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
   },
   "clock": {
     "format": "{:%Y-%m-%d %H:%M:%S}",
