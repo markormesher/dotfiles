@@ -79,7 +79,6 @@ require("packer").startup(function(use)
           "html",
           "javascript",
           "json",
-          "jsonnet",
           "lua",
           "markdown",
           "markdown_inline",
@@ -103,8 +102,7 @@ require("packer").startup(function(use)
   use("williamboman/mason-lspconfig.nvim")
   use("WhoIsSethDaniel/mason-tool-installer.nvim")
   use("neovim/nvim-lspconfig")
-  use("jose-elias-alvarez/null-ls.nvim")
-  use("glepnir/lspsaga.nvim")
+  use("nvimdev/lspsaga.nvim")
 
   -- autocompletion
   use({
@@ -119,7 +117,6 @@ require("packer").startup(function(use)
       },
 
       -- completion sources
-      { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-nvim-lsp" },
     }

@@ -94,7 +94,7 @@ end
 
 local lsp_ok, lsp = check_plugin("lspconfig")
 local cmp_nvim_lsp_ok, cmp_nvim_lsp = check_plugin("cmp_nvim_lsp")
-if (lsp_ok and cmp_nvim_lsp) then
+if (lsp_ok and cmp_nvim_lsp_ok) then
   local cmp_capabilities = cmp_nvim_lsp.default_capabilities()
 
   -- biome
