@@ -1,6 +1,155 @@
 require("mormesher/globals")
 
 --
+-- Install LSP packages
+--
+
+local mason_ok, mason = check_plugin("mason")
+local mason_tools_ok, mason_tools = check_plugin("mason-tool-installer")
+if (mason_ok and mason_tools_ok) then
+  mason.setup()
+  mason_tools.setup({
+    ensure_installed = {
+      -- JS/TS
+      "biome",
+      "eslint-lsp",
+      "typescript-language-server",
+
+      -- CSS
+      "cssls",
+
+      -- Go
+      "gopls",
+    },
+    auto_update = true,
+    run_on_start = true,
+  })
+end
+
+--
+-- Actual LSP setup
+--
+
+vim.lsp.config("*", {
+  root_markers = { ".git" },
+})
+
+vim.lsp.config("gopls", {
+  cmd = { "gopls" },
+  filetypes = {
+    "go",
+  },
+})
+
+vim.lsp.config("eslint", {
+  cmd = { "vscode-eslint-language-server", "--stdio" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.tsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx"
+  },
+})
+
+vim.lsp.config("ts_ls", {
+  cmd = { "typescript-language-server", "--stdio" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.tsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx"
+  },
+})
+
+vim.lsp.config("cssls", {
+  cmd = { "vscode-css-language-server", "--stdio" },
+  filetypes = {
+    "css",
+    "scss",
+  },
+})
+
+vim.lsp.enable({
+  "gopls",
+  "eslint",
+  "ts_ls",
+  "cssls",
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+    -- format on save
+    if not client:supports_method("textDocument/willSaveWaitUntil") and client:supports_method("textDocument/formatting") then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        callback = function()
+          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+        end,
+      })
+    end
+  end,
+})
+
+--
+-- Auto completion
+--
+
+local cmp_ok, cmp = check_plugin("cmp")
+local luasnip_ok, luasnip = check_plugin("luasnip")
+if (cmp_ok and luasnip_ok) then
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body)
+      end
+    },
+    mapping = {
+      ["<C-e>"] = cmp.mapping.abort(),
+      ["<cr>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.confirm({ select = true })
+        else
+          fallback()
+        end
+      end, { "i", "c" }),
+      ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
+      ["<up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
+    },
+    sources = {
+      { name = "nvim_lsp" },
+      { name = "path" },
+      { name = "luasnip" },
+      {
+        name = "buffer",
+        keyword_length = 5, -- trigger completion on Nth character
+        max_item_count = 5,
+        option = {
+          keyword_length = 5, -- minimum length for candidates
+          get_bufnrs = function()
+            return vim.api.nvim_list_bufs()
+          end,
+        }
+      },
+    },
+    formatting = {
+      format = function(entry, vim_item)
+        -- show the completion source for debugging
+        -- vim_item.menu = entry.source.name
+
+        return vim_item
+      end,
+    },
+  })
+
+  cmd("set completeopt=menuone,noinsert,noselect")
+end
+
+--
 -- LSP actions via lspsaga
 --
 
@@ -59,179 +208,3 @@ vim.diagnostic.config({
   update_in_insert = false,
   signs = true
 })
-
---
--- Actual language servers
---
-
-local mason_ok, mason = check_plugin("mason")
-local mason_lspconfig_ok, mason_lspconfig = check_plugin("mason-lspconfig")
-local mason_tools_ok, mason_tools = check_plugin("mason-tool-installer")
-if (mason_ok and mason_lspconfig_ok and mason_tools_ok) then
-  mason.setup()
-
-  mason_lspconfig.setup({
-    automatic_install = true,
-  })
-
-  mason_tools.setup({
-    ensure_installed = {
-      -- JS/TS
-      "biome",
-      "eslint-lsp",
-      "typescript-language-server",
-
-      -- CSS
-      "cssls",
-
-      -- Go
-      "gopls",
-    },
-    auto_update = true,
-    run_on_start = true,
-  })
-end
-
-local lsp_ok, lsp = check_plugin("lspconfig")
-local cmp_nvim_lsp_ok, cmp_nvim_lsp = check_plugin("cmp_nvim_lsp")
-if (lsp_ok and cmp_nvim_lsp_ok) then
-  local cmp_capabilities = cmp_nvim_lsp.default_capabilities()
-
-  -- biome
-  lsp.biome.setup({
-    capabilities = cmp_capabilities,
-    on_attach = function()
-      -- TOOD: fix on save
-    end,
-    filetypes = {
-      "css",
-      "scss",
-      "json",
-      "javascript",
-      "javascriptreact",
-      "javascript.tsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx"
-    }
-  })
-
-  -- eslint
-  lsp.eslint.setup({
-    capabilities = cmp_capabilities,
-    on_attach = function()
-      -- eslint doesn"t support autoFixOnSave, so run EslintFixAll instead
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = vim.api.nvim_create_augroup("eslint_lsp", {}),
-        pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.cjs", "*.cjsx", "*.mjs", "*.mjsx" },
-        command = "EslintFixAll",
-      })
-    end,
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.tsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx"
-    }
-  })
-
-  -- typescript
-  lsp.ts_ls.setup({
-    capabilities = cmp_capabilities,
-    init_options = {
-      preferences = {
-        importModuleSpecifierPreference = "relative",
-        jsxAttributeCompletionStyle = "braces"
-      },
-    },
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.tsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx"
-    },
-    cmd = { "typescript-language-server", "--stdio" }
-  })
-
-  -- css
-  lsp.cssls.setup({
-    capabilities = cmp_capabilities,
-    init_options = {},
-    filetypes = {
-      "css",
-      "scss"
-    }
-  })
-
-  -- go
-  lsp.gopls.setup({
-    capabilities = cmp_capabilities,
-    on_attach = function()
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = { "*.go" },
-        callback = function()
-          local params = vim.lsp.util.make_range_params()
-          params.context = {only = {"source.organizeImports"}}
-          local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
-          for cid, res in pairs(result or {}) do
-            for _, r in pairs(res.result or {}) do
-              if r.edit then
-                local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
-                vim.lsp.util.apply_workspace_edit(r.edit, enc)
-              end
-            end
-          end
-          vim.lsp.buf.format({async = false})
-        end
-      })
-    end,
-  })
-end
-
---
--- Auto completion
---
-
-local cmp_ok, cmp = check_plugin("cmp")
-local luasnip_ok, luasnip = check_plugin("luasnip")
-
-if (cmp_ok and luasnip_ok) then
-  cmp.setup({
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end
-    },
-    mapping = {
-      ['<C-e>'] = cmp.mapping.abort(),
-      ["<cr>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.confirm({ select = true })
-        else
-          fallback()
-        end
-      end, { "i", "c" }),
-      ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
-      ["<up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
-    },
-    sources = {
-      { name = "nvim_lsp" },
-      { name = "path" },
-      {
-        name = "buffer",
-        option = {
-          get_bufnrs = function()
-            return vim.api.nvim_list_bufs()
-          end
-        }
-      },
-      { name = "luasnip" },
-    }
-  })
-
-  cmd("set completeopt=menuone,noinsert,noselect")
-end

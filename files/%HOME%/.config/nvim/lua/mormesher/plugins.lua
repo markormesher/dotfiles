@@ -99,9 +99,7 @@ require("packer").startup(function(use)
   })
 
   use("williamboman/mason.nvim")
-  use("williamboman/mason-lspconfig.nvim")
   use("WhoIsSethDaniel/mason-tool-installer.nvim")
-  use("neovim/nvim-lspconfig")
   use("nvimdev/lspsaga.nvim")
 
   -- autocompletion
@@ -118,6 +116,7 @@ require("packer").startup(function(use)
 
       -- completion sources
       { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-nvim-lsp" },
     }
   });
