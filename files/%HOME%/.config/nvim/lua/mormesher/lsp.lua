@@ -50,6 +50,15 @@ vim.lsp.config("eslint", {
     "typescriptreact",
     "typescript.tsx"
   },
+  settings = {
+    nodePath = "",
+    workingDirectory = { mode = "location" },
+    experimental = {
+      useFlatConfig = false,
+    },
+    problems = {},
+    rulesCustomizations = {},
+  },
 })
 
 vim.lsp.config("ts_ls", {
