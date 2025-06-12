@@ -12,6 +12,8 @@ input type:touchpad {
   accel_profile adaptive
   pointer_accel 0.2
   scroll_factor 0.3
+  drag enabled
+  drag_lock disabled
 }
 
 ## appearance
