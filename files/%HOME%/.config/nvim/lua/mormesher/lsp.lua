@@ -27,57 +27,33 @@ end
 
 --
 -- Actual LSP setup
+-- Note: most config comes from neovim/lspconfig, these are just specific overrides
 --
 
-vim.lsp.config("*", {
-  root_markers = { ".git" },
-})
+vim.api.nvim_create_augroup("lsp_custom", { clear = true })
 
 vim.lsp.config("gopls", {
-  cmd = { "gopls" },
-  filetypes = {
-    "go",
-  },
-})
-
-vim.lsp.config("eslint", {
-  cmd = { "vscode-eslint-language-server", "--stdio" },
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.tsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx"
-  },
   settings = {
-    nodePath = "",
-    workingDirectory = { mode = "location" },
-    experimental = {
-      useFlatConfig = false,
+    gopls = {
+      staticcheck = true,
     },
-    problems = {},
-    rulesCustomizations = {},
   },
 })
 
 vim.lsp.config("ts_ls", {
-  cmd = { "typescript-language-server", "--stdio" },
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.tsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx"
+  init_options = {
+    preferences = {
+      importModuleSpecifierPreference = "relative",
+      jsxAttributeCompletionStyle = "braces",
+    },
   },
 })
 
-vim.lsp.config("cssls", {
-  cmd = { "vscode-css-language-server", "--stdio" },
-  filetypes = {
-    "css",
-    "scss",
+vim.lsp.config("eslint", {
+  settings = {
+    format = { enable = true },
+    workingDirectory = { mode = "auto" },
+    codeActionOnSave = { enable = true, mode = "problems" },
   },
 })
 
@@ -89,18 +65,22 @@ vim.lsp.enable({
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+  group = "lsp_custom",
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
     -- format on save
-    if not client:supports_method("textDocument/willSaveWaitUntil") and client:supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
       vim.api.nvim_create_autocmd("BufWritePre", {
-        group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+        group = "lsp_custom",
         buffer = args.buf,
         callback = function()
-          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
-        end,
+          vim.lsp.buf.format({
+            async = false,
+            bufnr = args.buf,
+            timeout_ms = 1000,
+          })
+        end
       })
     end
   end,
@@ -176,7 +156,7 @@ if (lsp_saga_ok) then
     rename = {
       quit = "<esc>",
       in_select = false,
-    }
+    },
   })
 
   -- floating terminal
@@ -203,19 +183,27 @@ if (lsp_saga_ok) then
 end
 
 --
--- Vim diagnostic settings
+-- Diagnostic settings
 --
 
-vim.fn.sign_define("DiagnosticSignError", { text = "✘", texthl = "LspDiagnosticsDefaultError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "▲", texthl = "LspDiagnosticsDefaultWarning" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "⚑", texthl = "LspDiagnosticsDefaultInformation" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "»", texthl = "LspDiagnosticsDefaultHint" })
 vim.diagnostic.config({
   severity_sort = true,
   virtual_text = {
     enable = true,
-    prefix = ""
   },
   update_in_insert = false,
-  signs = true
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "✘",
+      [vim.diagnostic.severity.WARN] = "▲",
+      [vim.diagnostic.severity.INFO] = "⚑",
+      [vim.diagnostic.severity.HINT] = "»",
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.INFO] = "",
+    },
+  },
 })

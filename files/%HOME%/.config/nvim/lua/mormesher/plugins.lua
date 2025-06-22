@@ -98,9 +98,11 @@ require("packer").startup(function(use)
     end
   })
 
+  -- LSP tools (see lsp.lua for config)
   use("williamboman/mason.nvim")
   use("WhoIsSethDaniel/mason-tool-installer.nvim")
   use("nvimdev/lspsaga.nvim")
+  use("neovim/nvim-lspconfig")
 
   -- autocompletion
   use({
