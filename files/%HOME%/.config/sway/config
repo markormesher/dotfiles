@@ -80,7 +80,7 @@ bindsym $mod+shift+q kill
 bindsym $mod+space exec "rofi -modi combi -show combi -combi-modi drun,window,filebrowser"
 
 # start rofi emoji picker on $mod+.
-bindsym $mod+Period exec "rofi -modi emoji -show emoji -emoji-mode insert_no_copy"
+bindsym $mod+Period exec "rofi -modi emoji -show emoji -emoji-mode insert"
 
 # lock the screen
 bindsym $mod+l exec swaylock -f
