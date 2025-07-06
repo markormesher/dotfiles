@@ -33,7 +33,7 @@
   },
 
   "bluetooth": {
-    "on-click": "blueman-manager",
+    "on-click": "blueberry",
   },
   "network": {
     "interface": "wl*",

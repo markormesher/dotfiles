@@ -178,7 +178,7 @@ set {
 for_window {
   [title="(?:Open|Save) (?:File|Folder|As)"] $float
   [title="File Operation Progress"] $float
-  [title="Bluetooth Devices"] $float
+  [title="Bluetooth"] $float
   [title="Helvum"] $float
 }
 
