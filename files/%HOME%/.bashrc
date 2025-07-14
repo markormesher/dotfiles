@@ -162,7 +162,7 @@ function custom_prompt() {
   local cwd="[ ${TXT_CYAN}\$(shortened_dir)${TXT_RESET} ]"
 
   local prompt="$ "
-  export PS1="\n┌─${user_and_host}${cwd}\$(git_info_for_prompt)\n└───$prompt"
+  PS1="\n┌─${user_and_host}${cwd}\$(git_info_for_prompt)\n└───$prompt"
 }
 
 custom_prompt
