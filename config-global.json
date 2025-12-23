@@ -73,6 +73,10 @@
       "repo": "./files/%HOME%/.config/waybar/style.css"
     },
     {
+      "original": "%HOME%/.config/waybar/toggle-light-dark.sh",
+      "repo": "./files/%HOME%/.config/waybar/toggle-light-dark.sh"
+    },
+    {
       "original": "%HOME%/.gitconfig",
       "repo": "./files/%HOME%/.gitconfig"
     },

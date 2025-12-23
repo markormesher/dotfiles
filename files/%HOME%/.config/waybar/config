@@ -48,7 +48,8 @@
     "on-click": "helvum"
   },
   "backlight": {
-    "format": "󰌵 {percent}%"
+    "format": "󰌵 {percent}%",
+    "on-click": "~/.config/waybar/toggle-light-dark.sh",
   },
   "battery": {
     "format-charging": "󰚥 {capacity}%",

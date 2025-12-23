@@ -1,3 +1,5 @@
+include /etc/sway/config.d/*
+
 ## hardware
 
 output eDP-1 scale 1.25
@@ -61,8 +63,8 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioPlay exec playerctl play-pause
 
 # Use brightnessctl to adjust brightness
-bindsym XF86MonBrightnessUp exec brightnessctl s +2% -q
-bindsym XF86MonBrightnessDown exec brightnessctl s 2%- -q
+bindsym XF86MonBrightnessUp exec brightnessctl s +1% -q
+bindsym XF86MonBrightnessDown exec brightnessctl s 1%- -q
 
 # Use grim + slurp to take screenshots
 bindsym Print exec ./.config/sway/screenshot.sh

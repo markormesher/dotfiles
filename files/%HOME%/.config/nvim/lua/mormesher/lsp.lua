@@ -59,9 +59,10 @@ vim.lsp.config("eslint", {
 
 vim.lsp.enable({
   "gopls",
-  "eslint",
   "ts_ls",
+  "eslint",
   "cssls",
+  "openscad_lsp",
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
