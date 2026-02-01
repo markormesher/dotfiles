@@ -128,7 +128,18 @@ require("packer").startup(function(use)
   --
 
   -- gcc to (un)comment a line, gc to (un)comment a visual selection
-  use("tpope/vim-commentary")
+  use({
+    "tpope/vim-commentary",
+    config = function()
+      -- custom comment types
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "openscad",
+        callback = function()
+          vim.opt_local.commentstring = "// %s"
+        end,
+      })
+    end,
+  })
 
   -- detect indentation style and adjust settings
   use("tpope/vim-sleuth")
