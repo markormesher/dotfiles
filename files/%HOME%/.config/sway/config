@@ -179,6 +179,7 @@ set {
 
 for_window {
   [title="(?:Open|Save) (?:File|Folder|As)"] $float
+  [title="(?:Rename) "] $float
   [title="File Operation Progress"] $float
   [title="Bluetooth"] $float
   [title="Helvum"] $float
