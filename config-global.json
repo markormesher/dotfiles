@@ -73,8 +73,12 @@
       "repo": "./files/%HOME%/.config/waybar/style.css"
     },
     {
-      "original": "%HOME%/.config/waybar/toggle-light-dark.sh",
-      "repo": "./files/%HOME%/.config/waybar/toggle-light-dark.sh"
+      "original": "%HOME%/.config/waybar/toggle-theme.sh",
+      "repo": "./files/%HOME%/.config/waybar/toggle-theme.sh"
+    },
+    {
+      "original": "%HOME%/.config/xdg-desktop-portal/portals.conf",
+      "repo": "./files/%HOME%/.config/xdg-desktop-portal/portals.conf"
     },
     {
       "original": "%HOME%/.gitconfig",

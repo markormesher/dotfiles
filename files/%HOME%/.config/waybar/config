@@ -8,12 +8,11 @@
   ],
   "modules-right": [
     "custom/needs-reboot",
-    "network",
-    "bluetooth",
     "wireplumber",
     "backlight",
     "battery",
     "sway/language",
+    "tray",
     "clock"
   ],
 
@@ -32,16 +31,6 @@
     "hide-empty-text": true
   },
 
-  "bluetooth": {
-    "on-click": "blueberry",
-    "format-disabled": " off"
-  },
-  "network": {
-    "interface": "wl*",
-    "format": "󰖩 {ifname}...",
-    "format-wifi": "󰖩 {essid}",
-    "format-disconnected": "󰖪 disconnected"
-  },
   "wireplumber": {
     "format": "󰕾 {volume}%",
     "format-muted": "󰸈 {volume}%",
@@ -49,7 +38,7 @@
   },
   "backlight": {
     "format": "󰌵 {percent}%",
-    "on-click": "~/.config/waybar/toggle-light-dark.sh",
+    "on-click": "~/.config/waybar/toggle-theme.sh",
   },
   "battery": {
     "format-charging": "󰚥 {capacity}%",
@@ -65,5 +54,9 @@
   "clock": {
     "format": "{:%Y-%m-%d %H:%M:%S}",
     "interval": 1
+  },
+  "tray": {
+    "expand": true,
+    "spacing": 4
   }
 }

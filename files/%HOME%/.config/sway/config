@@ -23,16 +23,18 @@ input type:touchpad {
 # default font
 font pango:Hack Nerd Font Mono 10
 
-## tools
-
-# start XDG autostart .desktop files using dex
-exec dex --autostart
+## software
 
 # header bar
-exec ./.config/waybar/launch.sh
+exec ~/.config/waybar/launch.sh
 
 # notifier
-exec mako --config .config/mako/config.ini
+exec mako --config ~/.config/mako/config.ini
+
+# tray apps
+exec udiskie --tray --file-manager thunar --terminal kitty
+exec blueman-applet
+exec iwgtk -i
 
 # screen idling and locking
 # 1 min -> reduce brightness
@@ -67,7 +69,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl s +1% -q
 bindsym XF86MonBrightnessDown exec brightnessctl s 1%- -q
 
 # Use grim + slurp to take screenshots
-bindsym Print exec ./.config/sway/screenshot.sh
+bindsym Print exec ~/.config/sway/screenshot.sh
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -183,6 +185,7 @@ for_window {
   [title="File Operation Progress"] $float
   [title="Bluetooth"] $float
   [title="Helvum"] $float
+  [title="iwgtk"] $float
 }
 
 # auto-start applications
