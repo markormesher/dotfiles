@@ -1,4 +1,5 @@
 [ -r ~/.bashrc ] && source ~/.bashrc
+[ -r ~/.bashrc.local ] && source ~/.bashrc.local
 
 # start sway on login to tty1 if it's installed
 if command -v sway >/dev/null 2>&1 && [ "$(tty)" = "/dev/tty1" ]; then

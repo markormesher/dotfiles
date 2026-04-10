@@ -38,6 +38,7 @@ PATH="${PATH}:/sbin"
 PATH="${PATH}:/bin"
 
 # user-owned binaries
+[ -d "${HOME}/.local/bin" ] && PATH="${PATH}:${HOME}/.local/bin"
 [ -d "${HOME}/go/bin" ] && PATH="${PATH}:${HOME}/go/bin"
 [ -d "${HOME}/bin" ] && PATH="${PATH}:${HOME}/bin"
 

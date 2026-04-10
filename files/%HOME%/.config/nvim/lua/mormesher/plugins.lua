@@ -45,7 +45,7 @@ require("packer").startup(function(use)
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch", "diagnostics" },
-          lualine_c = { "filename" },
+          lualine_c = { "filename", "aerial" },
           lualine_x = { "filetype" },
           lualine_y = { "searchcount" },
           lualine_z = { "progress", "location" }
@@ -122,6 +122,29 @@ require("packer").startup(function(use)
       { "hrsh7th/cmp-nvim-lsp" },
     }
   });
+
+  -- code outline
+  use({
+    "stevearc/aerial.nvim",
+    config = function()
+      require("aerial").setup({
+        layout = {
+          default_direction = "float",
+          max_width = { 0.8 },
+          min_width = { 0.3 },
+        },
+        float = {
+          relative = "editor",
+        },
+        close_on_select = true,
+        highlight_on_jump = 600, -- ms
+        highlight_on_hover = true,
+        autojump = true,
+      })
+
+      keymap.set("n", "<leader>a", "<cmd>:AerialToggle<cr>")
+    end
+  })
 
   --
   -- general typing tools

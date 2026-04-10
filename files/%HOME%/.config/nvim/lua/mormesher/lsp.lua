@@ -63,6 +63,7 @@ vim.lsp.enable({
   "eslint",
   "cssls",
   "openscad_lsp",
+  "typo_lsp",
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
