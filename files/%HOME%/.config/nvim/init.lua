@@ -33,7 +33,7 @@ vim.pack.add({
 
   -- tree-sitter abstraction layer
   -- TODO: replace/upgrade this
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 
   -- autocompletion
   "https://github.com/hrsh7th/nvim-cmp",
