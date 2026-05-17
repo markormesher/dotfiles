@@ -21,26 +21,6 @@
       "repo": "./files/%HOME%/.config/nvim/init.lua"
     },
     {
-      "original": "%HOME%/.config/nvim/lua/mormesher/globals.lua",
-      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/globals.lua"
-    },
-    {
-      "original": "%HOME%/.config/nvim/lua/mormesher/key-shortcuts.lua",
-      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/key-shortcuts.lua"
-    },
-    {
-      "original": "%HOME%/.config/nvim/lua/mormesher/lsp.lua",
-      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/lsp.lua"
-    },
-    {
-      "original": "%HOME%/.config/nvim/lua/mormesher/options.lua",
-      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/options.lua"
-    },
-    {
-      "original": "%HOME%/.config/nvim/lua/mormesher/plugins.lua",
-      "repo": "./files/%HOME%/.config/nvim/lua/mormesher/plugins.lua"
-    },
-    {
       "original": "%HOME%/.config/sway/config",
       "repo": "./files/%HOME%/.config/sway/config"
     },
