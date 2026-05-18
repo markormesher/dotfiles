@@ -186,6 +186,7 @@ for_window {
   [title="Bluetooth"] $float
   [title="Helvum"] $float
   [title="iwgtk"] $float
+  [title="Extension: .*"] $float
 }
 
 # auto-start applications
