@@ -322,17 +322,3 @@ export EDITOR="${HOME}/bin/start_vim"
 alias v='${HOME}/bin/start_vim'
 alias vim='${HOME}/bin/start_vim'
 alias nvim='${HOME}/bin/start_vim'
-
-function vw {
-  old_path="$(pwd)"
-  cd ~/vimwiki || exit 1
-  nvim +:VimwikiIndex
-  cd "$old_path" || exit 1
-}
-
-function vd {
-  old_path="$(pwd)"
-  cd ~/vimwiki || exit 1
-  nvim +:VimwikiMakeDiaryNote
-  cd "$old_path" || exit 1
-}
