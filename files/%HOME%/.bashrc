@@ -262,6 +262,26 @@ else
   alias st='echo "semver-tagger" is not on the path yet"'
 fi
 
+function cleangit() {
+  # prune remote references
+  git remote prune origin
+
+  # remove merged branches
+  tmp=$(mktemp)
+  echo "# Deleting the following branches:" > $tmp
+  git branch -v | (grep '\[gone\]' || :) | awk '{ print $1 }' >> $tmp
+  if grep -v '^#' $tmp >/dev/null; then
+    $EDITOR $tmp
+    if grep -v '^#' $tmp >/dev/null; then
+      xargs git branch -D -v <<<$(cat $tmp | grep -v '^#')
+    fi
+  fi
+  rm -f $tmp
+
+  # gc
+  git gc --aggressive
+}
+
 # gpg
 
 GPG_TTY=$(tty)
