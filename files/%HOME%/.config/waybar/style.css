@@ -8,27 +8,27 @@
 }
 
 window#waybar {
-  background-color: @background-darker;
+  background-color: @background;
   color: @comment;
 }
 
 /* widget spacing */
 
-.modules-left > * > .module {
+.modules-left>*>.module {
   padding: 0 18px;
   border-left: 1px solid @selection;
 }
 
-.modules-left > *:first-child > .module {
+.modules-left>*:first-child>.module {
   border-left: none;
 }
 
-.modules-right > * > .module {
+.modules-right>*>.module {
   padding: 0 18px;
   border-right: 1px solid @selection;
 }
 
-.modules-right > *:last-child > .module {
+.modules-right>*:last-child>.module {
   border-right: none;
 }
 
@@ -48,20 +48,17 @@ window#waybar {
   padding-right: 0;
 }
 
-#workspaces button.focused, #workspaces button:hover {
-  color: @purple;
+#workspaces button.focused,
+#workspaces button:hover {
+  color: @cyan;
   font-weight: bold;
 }
 
 #mode {
-  color: @pink;
+  color: @orange;
 }
 
 #window {
-  color: @foreground;
-}
-
-#clock {
   color: @foreground;
 }
 

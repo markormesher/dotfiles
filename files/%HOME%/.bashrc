@@ -290,10 +290,10 @@ export GPG_TTY
 
 # java
 
-alias java='${HOME}/.sdkman/candidates/java/current/bin/java'
-alias javac='${HOME}/.sdkman/candidates/java/current/bin/javac'
-JAVA_HOME=$( java -XshowSettings:properties -version 2>&1 > /dev/null | grep 'java.home' | cut -d '=' -f 2 | tr -d '[:space:]' )
-export JAVA_HOME
+if command -v java &> /dev/null; then
+  JAVA_HOME=$( java -XshowSettings:properties -version 2>&1 > /dev/null | grep 'java.home' | cut -d '=' -f 2 | tr -d '[:space:]' )
+  export JAVA_HOME
+fi
 
 function gw {
   if [ -f ./gradlew ]; then

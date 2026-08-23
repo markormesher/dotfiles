@@ -23,6 +23,11 @@ input type:touchpad {
 # default font
 font pango:Hack Nerd Font Mono 10
 
+# colours
+# class                 border      background  text        indicator   child_border
+client.focused          #3a3a37     #1c2e2e     #e8e4dc     #3a3a37     #3a3a37
+client.unfocused        #3a3a37     #212120     #5a5955     #3a3a37     #3a3a37
+
 ## software
 
 # header bar

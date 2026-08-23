@@ -12,8 +12,8 @@
     "backlight",
     "battery",
     "sway/language",
-    "tray",
-    "clock"
+    "clock",
+    "tray"
   ],
 
   "sway/workspaces": {},
@@ -38,7 +38,7 @@
   },
   "backlight": {
     "format": "󰌵 {percent}%",
-    "on-click": "~/.config/waybar/toggle-theme.sh",
+    "on-click": "~/.config/waybar/toggle-theme.sh"
   },
   "battery": {
     "format-charging": "󰚥 {capacity}%",
@@ -52,7 +52,7 @@
     "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
   },
   "clock": {
-    "format": "{:%Y-%m-%d %H:%M:%S}",
+    "format": "{:%d %b / %T}",
     "interval": 1
   },
   "tray": {

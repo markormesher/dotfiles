@@ -4,7 +4,7 @@
 
 vim.pack.add({
   -- colourscheme
-  "https://github.com/dracula/vim",
+  "https://github.com/ThorstenRhau/token",
 
   -- notifications
   "https://github.com/rcarriga/nvim-notify",
@@ -50,9 +50,6 @@ vim.pack.add({
   "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
   "https://github.com/nvimdev/lspsaga.nvim",
   "https://github.com/neovim/nvim-lspconfig",
-
-  -- highlight jump targets
-  "https://github.com/unblevable/quick-scope",
 
   -- detect indentation style and adjust settings
   "https://github.com/tpope/vim-sleuth",
@@ -127,10 +124,11 @@ vim.opt.cmdheight = 0
 vim.opt.shortmess:append "c"
 
 -- colours
-vim.cmd("colorscheme dracula")
+with_plugin("token", function(p)
+  p.setup({})
+  vim.cmd.colorscheme("token")
+end)
 
-vim.api.nvim_set_hl(0, "QuickScopePrimary", { underline = true })
-vim.api.nvim_set_hl(0, "QuickScopeSecondary", { underline = true, italic = true })
 
 -- diagnostic appearance
 vim.diagnostic.config({
