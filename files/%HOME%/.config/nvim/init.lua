@@ -3,8 +3,9 @@
 --
 
 vim.pack.add({
-  -- colourscheme
+  -- colourscheme and appearance
   "https://github.com/ThorstenRhau/token",
+  "https://github.com/nvim-tree/nvim-web-devicons",
 
   -- notifications
   "https://github.com/rcarriga/nvim-notify",
@@ -14,7 +15,6 @@ vim.pack.add({
 
   -- status line
   "https://github.com/nvim-lualine/lualine.nvim",
-  "https://github.com/nvim-tree/nvim-web-devicons",
 
   -- code outline
   "https://github.com/stevearc/aerial.nvim",
@@ -24,26 +24,19 @@ vim.pack.add({
 
   -- file browser
   "https://github.com/nvim-tree/nvim-tree.lua",
-  "https://github.com/nvim-tree/nvim-web-devicons",
 
   -- fuzzy search
   "https://github.com/junegunn/fzf",
   "https://github.com/ibhagwan/fzf-lua",
-  "https://github.com/nvim-tree/nvim-web-devicons",
 
   -- tree-sitter abstraction layer
   -- TODO: replace/upgrade this
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 
   -- autocompletion
-  "https://github.com/hrsh7th/nvim-cmp",
-  "https://github.com/hrsh7th/cmp-path",
-  "https://github.com/hrsh7th/cmp-buffer",
-  "https://github.com/hrsh7th/cmp-nvim-lsp",
-
-  -- snippet engine
+  "https://github.com/saghen/blink.cmp",
+  "https://github.com/saghen/blink.lib",
   "https://github.com/L3MON4D3/LuaSnip",
-  "https://github.com/saadparwaiz1/cmp_luasnip",
 
   -- LSP tools
   "https://github.com/williamboman/mason.nvim",
@@ -62,8 +55,29 @@ with_plugin = function(name, func)
   plugin_ok, plugin = pcall(require, name)
   if (not plugin_ok) then
     vim.notify("Plugin '" .. name .. "' is not available", "error")
+    return
   end
   pcall(func, plugin)
+end
+
+local inactive_plugins = vim.tbl_filter(function(p)
+  return not p.active
+end, vim.pack.get())
+
+if #inactive_plugins > 0 then
+  local names = vim.tbl_map(function(p)
+    return p.spec.name
+  end, inactive_plugins)
+
+  local choice = vim.fn.confirm(
+    "Remove unused plugin(s)?\n\n" .. table.concat(names, "\n"),
+    "&Yes\n&No",
+    2
+  )
+
+  if choice == 1 then
+    vim.pack.del(names)
+  end
 end
 
 --
@@ -421,52 +435,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- auto completion
-with_plugin("cmp", function(cmp)
-  with_plugin("luasnip", function(luasnip)
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end
-      },
-      mapping = {
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<cr>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.confirm({ select = true })
-          else
-            fallback()
-          end
-        end, { "i", "c" }),
-        ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
-        ["<up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
-      },
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "path" },
-        { name = "luasnip" },
-        {
-          name = "buffer",
-          keyword_length = 4, -- trigger completion on Nth character
-          max_item_count = 5,
-          option = {
-            keyword_length = 5, -- minimum length for candidates
-            get_bufnrs = function()
-              return vim.api.nvim_list_bufs()
-            end,
-          }
-        },
-      },
-      formatting = {
-        format = function(entry, vim_item)
-          -- show the completion source for debugging
-          -- vim_item.menu = entry.source.name
-
-          return vim_item
-        end,
-      },
-    })
-
-    vim.cmd("set completeopt=menuone,noinsert,noselect")
-  end)
+with_plugin("blink.cmp", function(cmp)
+  cmp.build():pwait()
+  cmp.setup({
+    keymap = {
+      preset = "enter"
+    },
+    sources = {
+      min_keyword_length = 3,
+    },
+  })
+  vim.cmd("set completeopt=menuone,noinsert,noselect")
 end)
+
