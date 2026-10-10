@@ -69,6 +69,10 @@
       "repo": "./files/%HOME%/.gitignore"
     },
     {
+      "original": "%HOME%/.gnupg/gpg-agent.conf",
+      "repo": "./files/%HOME%/.gnupg/gpg-agent.conf"
+    },
+    {
       "original": "%HOME%/.kube/kuberc",
       "repo": "./files/%HOME%/.kube/kuberc"
     },

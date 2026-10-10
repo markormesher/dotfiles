@@ -179,6 +179,10 @@ mode "resize" {
   bindsym $mod+r mode "default"
 }
 
+# make sure xwayland is used
+xwayland enable
+for_window [shell="xwayland"] title_format "[XWayland] %title
+
 # specific rules
 set {
   $float floating enable, resize set width 1030 height 710, border normal 1
