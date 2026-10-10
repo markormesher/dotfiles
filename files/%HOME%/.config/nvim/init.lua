@@ -310,7 +310,8 @@ with_plugin("mason", function(mason)
     mason_tools.setup({
       ensure_installed = {
         -- JS/TS
-        "eslint-lsp",
+        "biome",
+        -- "eslint-lsp",
         "typescript-language-server",
 
         -- CSS
@@ -348,20 +349,21 @@ vim.lsp.config("ts_ls", {
   },
 })
 
-vim.lsp.config("eslint", {
-  settings = {
-    format = { enable = true },
-    workingDirectory = { mode = "auto" },
-    codeActionOnSave = { enable = true, mode = "problems" },
-  },
-})
+-- vim.lsp.config("eslint", {
+--   settings = {
+--     format = { enable = true },
+--     workingDirectory = { mode = "auto" },
+--     codeActionOnSave = { enable = true, mode = "problems" },
+--   },
+-- })
 
 vim.lsp.enable({
-  "gopls",
-  "ts_ls",
-  "eslint",
+  "biome",
   "cssls",
+  -- "eslint",
+  "gopls",
   "openscad_lsp",
+  "ts_ls",
   "typo_lsp",
 })
 
