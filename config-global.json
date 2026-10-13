@@ -21,6 +21,10 @@
       "repo": "./files/%HOME%/.config/nvim/init.lua"
     },
     {
+      "original": "%HOME%/.config/openbox/menu.xml",
+      "repo": "./files/%HOME%/.config/openbox/menu.xml"
+    },
+    {
       "original": "%HOME%/.config/sway/config",
       "repo": "./files/%HOME%/.config/sway/config"
     },
