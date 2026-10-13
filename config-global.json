@@ -97,6 +97,10 @@
       "repo": "./files/%HOME%/.tmux/status-right.sh"
     },
     {
+      "original": "%HOME%/.xinitrc",
+      "repo": "./files/%HOME%/.xinitrc"
+    },
+    {
       "original": "%HOME%/bin/start_vim",
       "repo": "./files/%HOME%/bin/start_vim"
     }
